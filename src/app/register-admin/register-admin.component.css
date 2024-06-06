@@ -1,0 +1,40 @@
+.container-fluid {
+    background-color: #f8f9fa;
+  }
+  
+  .form-container {
+    max-width: 600px; /* Increased max-width for a wider form */
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-container h2 {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  

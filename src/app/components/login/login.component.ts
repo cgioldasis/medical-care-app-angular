@@ -70,4 +70,8 @@ export class LoginComponent {
     return this.errorMessage;
   }
 
+  navigateToRegisterMenu() {
+    this.router.navigate(['register-menu']);
+  }
+
 }

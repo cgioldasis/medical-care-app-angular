@@ -1,0 +1,79 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-light">
+  @if (registrationStatus.message === 'Not attempted yet') {
+
+      <form [formGroup]="form" class="d-flex flex-column p-4 shadow-lg bg-white rounded" (ngSubmit)="onSubmit(form)">
+        <h2 class="text-center mb-4">Register Admin</h2>
+
+        <mat-form-field class="mb-3" appearance="outline">
+          <mat-label>Username</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput type="text" formControlName="username" class="form-control" (blur)="checkDublicateUsername()">
+          @if (form.get('username').hasError('duplicateUsername')) {
+            <mat-error>Username is already taken</mat-error>
+          } @else {
+            @if (form.get('username').invalid && form.get('username').touched) {
+              <mat-error>Username is required</mat-error>
+            }
+          }
+
+        </mat-form-field>
+
+        <mat-form-field class="mb-3" appearance="outline">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput type="password" formControlName="password" class="form-control">
+          @if (form.get('password').invalid && form.get('password').touched) {
+            <mat-error>Password is required</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="mb-3" appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput type="password" formControlName="confirmPassword" class="form-control">
+          @if (form.get('confirmPassword').hasError('passwordMissmatch')) {
+            <mat-error>Passwords do not match</mat-error>
+          } @else {
+            @if (form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
+              <mat-error>Confirm Password is required</mat-error>
+            }
+          }
+        </mat-form-field>
+
+        <mat-form-field class="mb-3" appearance="outline">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" formControlName="email" class="form-control" (blur)="checkDublicateEmail()">
+          @if (form.get('email').hasError('duplicateEmail')) {
+            <mat-error>Email is already in use</mat-error>
+          } @else {
+            @if (form.get('username').invalid && form.get('username').touched) {
+              <mat-error>Username is required</mat-error>
+            }
+          }
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" class="btn btn-primary mt-3" [disabled]="form.invalid" (click)="onSubmit(form.value)">Register</button>
+      </form>
+
+  } @else {
+    @if (registrationStatus.success) {
+      <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+        <button mat-flat-button color="primary" class="btn btn-sm btn-primary mb-3" (click)="navigateTo('login')">Return To Login Page</button>
+        <div class="alert alert-success text-center p-4 shadow-lg rounded w-50">
+          <strong>Success:</strong>
+          {{ registrationStatus.message }}
+        </div>
+      </div>
+    } @else {
+      <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+        <div class="alert alert-danger text-center p-4 shadow-lg rounded w-100">
+          <strong>Error:</strong>
+          {{ registrationStatus.message }}
+        </div>
+      <button mat-flat-button color="primary" class="btn btn-sm btn-primary mb-3" (click)="navigateTo('login')">Return To Login Page</button>
+    </div>
+    }
+  }
+</div>
+
