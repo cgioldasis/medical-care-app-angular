@@ -4,9 +4,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DoctorDashboardComponent } from './components/doctor-dashboard/doctor-dashboard.component';
 import { authGuard } from './shared/guard/auth.guard';
-import { RegisterMenuComponent } from './register-menu/register-menu.component';
-import { RegisterAdminComponent } from './register-admin/register-admin.component';
-import { RegisterDoctorComponent } from './register-doctor/register-doctor.component';
+import { RegisterMenuComponent } from './components/register-menu/register-menu.component';
+import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
+import { RegisterDoctorComponent } from './components/register-doctor/register-doctor.component';
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
