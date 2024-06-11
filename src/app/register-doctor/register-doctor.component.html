@@ -1,103 +1,179 @@
 <div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-light">
-    @if (registrationStatus.message === 'Not attempted yet') {
-        <form [formGroup]="form" class="d-flex flex-column p-4 shadow-lg bg-white rounded" (ngSubmit)="onSubmit(form)">
-            <h2 class="text-center mb-4">Register Doctor</h2>
-    
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Username</mat-label>
-              <mat-icon matPrefix>person</mat-icon>
-              <input matInput type="text" formControlName="username" class="form-control" (blur)="checkDuplicateEmail()">
-              @if (form.get('username').hasError('duplicateUsername')) {
-                <mat-error>Username is already taken</mat-error>
-              } @else {
-                @if (form.get('username').invalid && form.get('username').touched) {
-                  <mat-error>Username is required</mat-error>
-                }
-              }
-    
-            </mat-form-field>
-    
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Password</mat-label>
-              <mat-icon matPrefix>lock</mat-icon>
-              <input matInput type="password" formControlName="password" class="form-control">
-              @if (form.get('password').invalid && form.get('password').touched) {
-                <mat-error>Password is required</mat-error>
-              }
-            </mat-form-field>
-    
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Confirm Password</mat-label>
-              <mat-icon matPrefix>lock</mat-icon>
-              <input matInput type="password" formControlName="confirmPassword" class="form-control">
-              @if (form.get('confirmPassword').hasError('passwordMissmatch')) {
-                <mat-error>Passwords do not match</mat-error>
-              } @else {
-                @if (form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
-                  <mat-error>Confirm Password is required</mat-error>
-                }
-              }
-            </mat-form-field>
-    
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Email</mat-label>
-              <mat-icon matPrefix>email</mat-icon>
-              <input matInput type="email" formControlName="email" class="form-control" (blur)="checkDuplicateEmail()">
-              @if (form.get('email').hasError('duplicateEmail')) {
-                <mat-error>Email is already in use</mat-error>
-              } @else {
-                @if (form.get('username').invalid && form.get('username').touched) {
-                  <mat-error>Username is required</mat-error>
-                }
-              }
-            </mat-form-field>
-
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>First Name</mat-label>
-              <mat-icon matPrefix>person</mat-icon>
-              <input matInput type="text" formControlName="firstName" class="form-control">
-              @if (form.get('firstName').invalid && form.hasError('required')) {
-                <mat-error>First Name is required</mat-error>
-              }
-              @if (form.get('firstName').invalid && form.hasError('minlength')) {
-                <mat-error>First Name must be at least 2 characters long</mat-error>
-              }
-            </mat-form-field>
-
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <mat-icon matPrefix>person</mat-icon>
-              <input matInput type="text" formControlName="lastName" class="form-control">
-              @if (form.get('lastName').invalid && form.hasError('required')) {
-                <mat-error>Last Name is required</mat-error>
-              }
-              @if (form.get('lastName').invalid && form.hasError('minlength')) {
-                <mat-error>Last Name must be at least 2 characters long</mat-error>
-              }
-            </mat-form-field>
-
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>SSID</mat-label>
-              <mat-icon matPrefix>person</mat-icon>
-                <input matInput type="text" formControlName="ssid" class="form-control">
-                @if (form.get('ssid').invalid && form.hasError('required')) {
-                  <mat-error>SSID is required</mat-error>
-                }
-                @if (form.get('ssid').invalid && form.hasError('minlength', 'maxlength')) {
-                  <mat-error>SSID must have 9 characters</mat-error>
-                }
-            </mat-form-field>
-
-            <mat-form-field class="mb-3" appearance="outline">
-              <mat-label>Gender</mat-label>
-                <mat-select formControlName="gender">
-                    <mat-option value="male">Male</mat-option>
-                    <mat-option value="female">Female</mat-option>
-                    <mat-option value="other">Other</mat-option>
-                </mat-select>
-            </mat-form-field>
-    
-            <button mat-flat-button color="primary" class="btn btn-primary mt-3" [disabled]="form.invalid" (click)="onSubmit(form.value)">Register</button>
-          </form>
-    }
+  @if (registrationStatus.message === 'Not attempted yet') {
+      <form [formGroup]="form" class="d-flex flex-column p-4 shadow-lg bg-white rounded" (ngSubmit)="onSubmit(form)">
+          <h2 class="text-center mb-4">Register Doctor</h2>
   
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Username</mat-label>
+                      <mat-icon matPrefix>person</mat-icon>
+                      <input matInput type="text" formControlName="username" class="form-control" (blur)="checkDuplicateUsername()">
+                      @if (form.get('username').hasError('duplicateUsername')) {
+                          <mat-error>Username is already taken</mat-error>
+                      } @else {
+                          @if (form.get('username').invalid && form.get('username').touched) {
+                              <mat-error>Username is required</mat-error>
+                          }
+                      }
+                  </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Password</mat-label>
+                      <mat-icon matPrefix>lock</mat-icon>
+                      <input matInput type="password" formControlName="password" class="form-control">
+                      @if (form.get('password').invalid && form.get('password').touched) {
+                          <mat-error>Password is required</mat-error>
+                      }
+                  </mat-form-field>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Confirm Password</mat-label>
+                      <mat-icon matPrefix>lock</mat-icon>
+                      <input matInput type="password" formControlName="confirmPassword" class="form-control">
+                      @if (form.get('confirmPassword').hasError('passwordMissmatch')) {
+                          <mat-error>Passwords do not match</mat-error>
+                      } @else {
+                          @if (form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
+                              <mat-error>Confirm Password is required</mat-error>
+                          }
+                      }
+                  </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Email</mat-label>
+                      <mat-icon matPrefix>email</mat-icon>
+                      <input matInput type="email" formControlName="email" class="form-control" (blur)="checkDuplicateEmail()">
+                      @if (form.get('email').hasError('duplicateEmail')) {
+                          <mat-error>Email is already in use</mat-error>
+                      } @else {
+                          @if (form.get('username').invalid && form.get('username').touched) {
+                              <mat-error>Username is required</mat-error>
+                          }
+                      }
+                  </mat-form-field>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>First Name</mat-label>
+                      <mat-icon matPrefix>person</mat-icon>
+                      <input matInput type="text" formControlName="firstname" class="form-control">
+                      @if (form.get('firstname').invalid && form.hasError('required')) {
+                          <mat-error>First Name is required</mat-error>
+                      }
+                      @if (form.get('firstname').invalid && form.hasError('minlength')) {
+                          <mat-error>First Name must be at least 2 characters long</mat-error>
+                      }
+                  </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Last Name</mat-label>
+                      <mat-icon matPrefix>person</mat-icon>
+                      <input matInput type="text" formControlName="lastname" class="form-control">
+                      @if (form.get('lastname').invalid && form.hasError('required')) {
+                          <mat-error>Last Name is required</mat-error>
+                      }
+                      @if (form.get('lastname').invalid && form.hasError('minlength')) {
+                          <mat-error>Last Name must be at least 2 characters long</mat-error>
+                      }
+                  </mat-form-field>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>SSID</mat-label>
+                      <mat-icon matPrefix>person</mat-icon>
+                      <input matInput type="text" formControlName="ssid" class="form-control">
+                      @if (form.get('ssid').invalid && form.hasError('required')) {
+                          <mat-error>SSID is required</mat-error>
+                      }
+                      @if (form.get('ssid').invalid && form.hasError('minlength', 'maxlength')) {
+                          <mat-error>SSID must have 9 characters</mat-error>
+                      }
+                  </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Gender</mat-label>
+                      <mat-select formControlName="gender">
+                          <mat-option value="male">Male</mat-option>
+                          <mat-option value="female">Female</mat-option>
+                          <mat-option value="other">Other</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Phone Number</mat-label>
+                      <mat-icon matPrefix>phone</mat-icon>
+                      <input matInput type="text" formControlName="phone" class="form-control">
+                      @if (form.get('phone').invalid && form.hasError('required')) {
+                        <mat-error>Phone is required</mat-error>
+                      }
+                      @if (form.get('phone').invalid && form.hasError('minlength', 'maxlength')) {
+                        <mat-error>Phone must have 10 characters</mat-error>
+                      }
+                      @if (form.get('phone').invalid && form.hasError('pattern')) {
+                        <mat-error>Phone number must have only numbers</mat-error>
+                      }
+                  </mat-form-field>
+              </div>
+
+              <div class="col-md-6">
+                  <mat-form-field class="mb-3" appearance="outline">
+                      <mat-label>Speciality</mat-label>
+                      <mat-select formControlName="specializationName">
+                            @for(specialization of specializations; track specialization) {
+                                <mat-option value="{{ specialization.specializationName }}">{{ specialization.specializationName }}</mat-option>
+                            }
+                          <mat-option>
+                            <div>
+                              <input matInput placeholder="Add New Specialization" #newSpecialization (click)="$event.stopPropagation()">
+                              <button mat-button (click)="addSpecialization(newSpecialization.value); newSpecialization.value=''; $event.stopPropagation()">Add</button>
+                            </div>
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
+          </div>  
+          <button mat-flat-button color="primary" class="btn btn-primary mt-3" [disabled]="form.invalid" (click)="onSubmit(form.value || isSubmitting)">Register</button>
+      </form>
+  } @else {
+    @if (registrationStatus.success) {
+      <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+        <button mat-flat-button color="primary" class="btn btn-sm btn-primary mb-3" (click)="navigateTo('login')">Return To Login Page</button>
+        <div class="alert alert-success text-center p-4 shadow-lg rounded w-50">
+          <strong>Success:</strong>
+          {{ registrationStatus.message }}
+        </div>
+      </div>
+    } @else {
+      <div class="d-flex justify-content-center align-items-center vh-100 flex-column">
+        <div class="alert alert-danger text-center p-4 shadow-lg rounded w-100">
+          <strong>Error:</strong>
+          {{ registrationStatus.message }}
+        </div>
+      <button mat-flat-button color="primary" class="btn btn-sm btn-primary mb-3" (click)="navigateTo('login')">Return To Login Page</button>
+    </div>
+    }
+  }
+</div>

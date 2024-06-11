@@ -41,21 +41,27 @@ export class RegisterAdminComponent {
     message: 'Not attempted yet',
   };
 
-  // Function to handle form submission
+    isSubmitting = false;
+
+
+
   onSubmit(value: any) {
-    console.log(value);
+    if (this.form.invalid || this.isSubmitting) {
+      return;
+    }
+
+    this.isSubmitting = true;
     const registerAdmin = this.form.value as RegisterAdmin;
-    console.log('Registering Admin', registerAdmin);
 
     this.userService.registerAdmin(registerAdmin).subscribe({
-      next: (response) => { 
-        console.log('Registration Success', response);
-        this.registrationStatus = {success: true, message: response.msg}
+      next: (response) => {
+        this.registrationStatus = { success: true, message: response.msg };
+        this.isSubmitting = false;
       },
       error: (response) => {
-        const message = response.error.msg
-        console.log('Error registering user', message);
+        const message = response.error.msg;
         this.registrationStatus = { success: false, message };
+        this.isSubmitting = false;
       },
     });
   }

@@ -3,9 +3,10 @@ export interface RegisterDoctor {
         password: string;
         confirmPassword: string;
         email: string;
-        firstName: string;
-        lastName: string;
+        firstname: string;
+        lastname: string;
         ssid: string;
         description: string;
         phone: string;
+        specializationName: string;
 }
