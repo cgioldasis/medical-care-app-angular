@@ -147,8 +147,8 @@
                             }
                           <mat-option>
                             <div>
-                              <input matInput placeholder="Add New Specialization" #newSpecialization (click)="$event.stopPropagation()">
-                              <button mat-button (click)="addSpecialization(newSpecialization.value); newSpecialization.value=''; $event.stopPropagation()">Add</button>
+                              <input class="bg-light border border-3 rounded rounded-3" matInput placeholder="Add New Specialization" #newSpecialization (click)="$event.stopPropagation()">
+                              <button mat-button class="mt-1" (click)="addSpecialization(newSpecialization.value); newSpecialization.value=''; $event.stopPropagation()">Add</button>
                             </div>
                           </mat-option>
                       </mat-select>
