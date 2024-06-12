@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="badge" [ngClass]="{
+            'bg-warning': user.status === 'PENDING',
+            'bg-success': user.status === 'APPROVED',
+            'bg-danger': user.status === 'REJECTED'
+          }">
+            {{ user.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm me-2" (click)="approveUser(user)" [disabled]="user.status === 'APPROVED' || user.username === 'admin'">Approve</button>
+          <button class="btn btn-danger btn-sm" (click)="rejectUser(user)" [disabled]="user.status === 'REJECTED' || user.username === 'admin'">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

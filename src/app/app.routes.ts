@@ -7,6 +7,7 @@ import { authGuard } from './shared/guard/auth.guard';
 import { RegisterMenuComponent } from './components/register-menu/register-menu.component';
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { RegisterDoctorComponent } from './components/register-doctor/register-doctor.component';
+import { UserStatusComponent } from './components/user-status/user-status.component';
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -14,8 +15,14 @@ export const routes: Routes = [
     {path: 'register-admin', component: RegisterAdminComponent},
     {path: 'register-doctor', component: RegisterDoctorComponent},
     {path: 'app-navbar', component: NavbarComponent},
-    {path: 'admin-dashboard', component: AdminDashboardComponent, data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
+    {path: 'admin-dashboard', component: AdminDashboardComponent,
+        children: [
+            {
+                path: 'user-status', component: UserStatusComponent
+            }],
+        data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
     {path: 'doctor-dashboard', component: DoctorDashboardComponent, data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard] },
-    {path: 'app-list-admin', component: AdminDashboardComponent},
-    {path: 'app-list-doctor', component: DoctorDashboardComponent},
+    {path: 'app-list-admin', component: AdminDashboardComponent, data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
+    {path: 'app-list-doctor', component: DoctorDashboardComponent , data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard]},
+
 ];

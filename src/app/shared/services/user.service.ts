@@ -3,7 +3,7 @@ import { Injectable, effect, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { jwtDecode } from 'jwt-decode';
-import { Credentials, LoggedInUser, RegisterAdmin } from '../interface/user';
+import { Credentials, LoggedInUser, RegisterAdmin, UpdateUserStatus, UsersWithStatus } from '../interface/user';
 import { Observable } from 'rxjs';
 
 // Define the base API URL from the environment configuration
@@ -83,5 +83,22 @@ export class UserService {
   // Function to check for duplicate email
   checkDublicateEmail(email: string): Observable<{ msg: string }> {
     return this.http.get<{ msg: string }>(`${API_URL}/user/check-email/${email}`);
+  }
+
+  // Function to get all users with status
+  getUsersWithStatus(): Observable<UsersWithStatus[]> {
+    return this.http.get<UsersWithStatus[]>(`${API_URL}/user/user-status/all` , {
+      headers: {
+        Authorization: ` ${localStorage.getItem('access_token')}`,
+      },
+    });
+  }
+
+  updateUserStatus(updateUserStatus: UpdateUserStatus): Observable<{ msg: string }> {
+    return this.http.put<{ msg: string }>(`${API_URL}/user/user-status/update/${updateUserStatus.id}`, updateUserStatus, {
+      headers: {
+        Authorization: ` ${localStorage.getItem('access_token')}`,
+      },
+    });
   }
 }

@@ -14,4 +14,16 @@ export interface RegisterAdmin {
     confirmPassword: string;
     email: string;
 }
-    
+
+export interface UsersWithStatus {
+    id : number;
+    username: string;
+    email: string;
+    status: 'PENDING' | 'APPROVED' | 'REJECTED';
+}
+
+
+export interface UpdateUserStatus {
+    id: number;
+    status: 'APPROVED' | 'REJECTED';
+}
