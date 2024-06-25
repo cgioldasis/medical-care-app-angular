@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { RegisterDoctor } from '../interface/doctor';
+import { DoctorAccessedByAdmin, RegisterDoctor } from '../interface/doctor';
+import { Observable } from 'rxjs';
 
 
 
@@ -20,5 +21,20 @@ export class DoctorService {
 
   registerDoctor(doctor: RegisterDoctor) {
     return this.http.post<{ msg: string }>(`${API_URL}/register`, doctor);
+  }
+  getDoctors(): Observable<DoctorAccessedByAdmin[]> {
+    return this.http.get<DoctorAccessedByAdmin[]>(`${API_URL}/admin-list`,{
+      headers: {
+        Authorization: ` ${localStorage.getItem('access_token')}`,
+      }
+    });
+  }
+
+  deleteDoctor(doctorId: number): Observable<{ msg: string }> {
+    return this.http.delete<{ msg: string }>(`${API_URL}/delete/${doctorId}`,{
+      headers: {
+        Authorization: ` ${localStorage.getItem('access_token')}`,
+      }
+    });
   }
 }

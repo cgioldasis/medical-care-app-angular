@@ -12,7 +12,7 @@ import { MenuItem } from '../../shared/interface/menu-item';
 export class AppListAdminComponent {
   menu: MenuItem[] = [
     { text: 'User Status', routerLink: 'user-status' },
-    { text: '@for Directive Example', routerLink: 'for-directive-example' },
+    { text: 'Doctors', routerLink: 'doctors-admin-list' },
     { text: 'Event Bind Example', routerLink: 'event-bind-example' },
     {
       text: 'Simple Datatable Example',

@@ -8,6 +8,7 @@ import { RegisterMenuComponent } from './components/register-menu/register-menu.
 import { RegisterAdminComponent } from './components/register-admin/register-admin.component';
 import { RegisterDoctorComponent } from './components/register-doctor/register-doctor.component';
 import { UserStatusComponent } from './components/user-status/user-status.component';
+import { DoctorListComponent } from './components/doctor-list/doctor-list.component';
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -19,7 +20,11 @@ export const routes: Routes = [
         children: [
             {
                 path: 'user-status', component: UserStatusComponent
-            }],
+            },
+            {
+                path: 'doctors-admin-list', component: DoctorListComponent
+            }
+        ],
         data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
     {path: 'doctor-dashboard', component: DoctorDashboardComponent, data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard] },
     {path: 'app-list-admin', component: AdminDashboardComponent, data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},

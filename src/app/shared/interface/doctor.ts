@@ -10,3 +10,14 @@ export interface RegisterDoctor {
         phone: string;
         specializationName: string;
 }
+
+export interface DoctorAccessedByAdmin {
+        id: number;
+        username: string;
+        email: string;
+        firstname: string;
+        lastname: string;
+        ssid: string;
+        specializationName: string;
+        phone: string;
+}

@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h2>Doctor List</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>SSID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doctor of doctors">
+        <td>{{ doctor.id }}</td>
+        <td>{{ doctor.username }}</td>
+        <td>{{ doctor.ssid }}</td>
+        <td>{{ doctor.firstname }}</td>
+        <td>{{ doctor.lastname }}</td>
+        <td>{{ doctor.phone }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="confirmDelete(doctor)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show d-block': deleteModalVisible}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="close" (click)="closeDeleteModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the doctor with ID: {{ selectedDoctor?.id }}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteDoctor()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
