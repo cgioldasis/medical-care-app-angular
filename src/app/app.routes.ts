@@ -9,6 +9,7 @@ import { RegisterAdminComponent } from './components/register-admin/register-adm
 import { RegisterDoctorComponent } from './components/register-doctor/register-doctor.component';
 import { UserStatusComponent } from './components/user-status/user-status.component';
 import { DoctorListComponent } from './components/doctor-list/doctor-list.component';
+import { MedicineListComponent } from './components/medicine-list/medicine-list.component';
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -23,6 +24,9 @@ export const routes: Routes = [
             },
             {
                 path: 'doctors-admin-list', component: DoctorListComponent
+            },
+            {
+                path: 'medicine-admin-list', component: MedicineListComponent
             }
         ],
         data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},

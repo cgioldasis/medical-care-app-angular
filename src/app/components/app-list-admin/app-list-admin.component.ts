@@ -13,7 +13,7 @@ export class AppListAdminComponent {
   menu: MenuItem[] = [
     { text: 'User Status', routerLink: 'user-status' },
     { text: 'Doctors', routerLink: 'doctors-admin-list' },
-    { text: 'Event Bind Example', routerLink: 'event-bind-example' },
+    { text: 'Medicines', routerLink: 'medicine-admin-list' },
     {
       text: 'Simple Datatable Example',
       routerLink: 'simple-datatable-example',

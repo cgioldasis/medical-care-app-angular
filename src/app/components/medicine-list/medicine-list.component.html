@@ -1,0 +1,142 @@
+<div class="container mt-4">
+  <h2>Medicine List</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <form [formGroup]="searchForm" (ngSubmit)="searchMedicines()">
+    <div class="form-group">
+      <label for="medicalName">Search by Medical Name</label>
+      <input type="text" id="medicalName" class="form-control" formControlName="medicalName">
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Search</button>
+  </form>
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Medicine Name</th>
+        <th>Active Substance</th>
+        <th>Manufacturer</th>
+        <th>Manufacture Date</th>
+        <th>Expiration Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medicine of filteredMedicines">
+        <td>{{ medicine.id }}</td>
+        <td>{{ medicine.medicineName }}</td>
+        <td>{{ medicine.activeSubstance }}</td>
+        <td>{{ medicine.manufacturer }}</td>
+        <td>{{ medicine.manufactureDate | date }}</td>
+        <td>{{ medicine.expirationDate | date }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="openUpdateModal(medicine)">Update</button>
+          <button class="btn btn-danger btn-sm" (click)="confirmDelete(medicine)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-success mt-2" (click)="openAddModal()">Add New Medicine</button>
+
+  <!-- Add Medicine Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show d-block': addModalVisible}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Medicine</h5>
+          <button type="button" class="close" (click)="closeAddModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addMedicineForm" (ngSubmit)="addMedicine()">
+            <div class="form-group">
+              <label for="medicineName">Medicine Name</label>
+              <input type="text" id="medicineName" class="form-control" formControlName="medicineName" required>
+            </div>
+            <div class="form-group">
+              <label for="activeSubstance">Active Substance</label>
+              <input type="text" id="activeSubstance" class="form-control" formControlName="activeSubstance" required>
+            </div>
+            <div class="form-group">
+              <label for="manufacturer">Manufacturer</label>
+              <input type="text" id="manufacturer" class="form-control" formControlName="manufacturer" required>
+            </div>
+            <div class="form-group">
+              <label for="manufactureDate">Manufacture Date</label>
+              <input type="date" id="manufactureDate" class="form-control" formControlName="manufactureDate" required>
+            </div>
+            <div class="form-group">
+              <label for="expirationDate">Expiration Date</label>
+              <input type="date" id="expirationDate" class="form-control" formControlName="expirationDate" required>
+            </div>
+            <button type="submit" class="btn btn-success mt-2">Add Medicine</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Medicine Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show d-block': updateModalVisible}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Medicine</h5>
+          <button type="button" class="close" (click)="closeUpdateModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="updateMedicineForm" (ngSubmit)="updateMedicine()">
+            <input type="hidden" formControlName="id">
+            <div class="form-group">
+              <label for="updateMedicineName">Medicine Name</label>
+              <input type="text" id="updateMedicineName" class="form-control" formControlName="medicineName">
+            </div>
+            <div class="form-group">
+              <label for="updateActiveSubstance">Active Substance</label>
+              <input type="text" id="updateActiveSubstance" class="form-control" formControlName="activeSubstance">
+            </div>
+            <div class="form-group">
+              <label for="updateManufacturer">Manufacturer</label>
+              <input type="text" id="updateManufacturer" class="form-control" formControlName="manufacturer">
+            </div>
+            <div class="form-group">
+              <label for="updateManufactureDate">Manufacture Date</label>
+              <input type="date" id="updateManufactureDate" class="form-control" formControlName="manufactureDate">
+            </div>
+            <div class="form-group">
+              <label for="updateExpirationDate">Expiration Date</label>
+              <input type="date" id="updateExpirationDate" class="form-control" formControlName="expirationDate">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Update Medicine</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show d-block': deleteModalVisible}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button type="button" class="close" (click)="closeDeleteModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the medicine with ID: {{ selectedMedicine?.id }} and Name: {{ selectedMedicine?.medicineName }}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeDeleteModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteMedicine()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
