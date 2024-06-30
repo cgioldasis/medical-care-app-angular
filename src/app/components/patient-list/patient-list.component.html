@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2>Patient List</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>SSID</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+        <th>Disease Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.firstname }}</td>
+        <td>{{ patient.lastname }}</td>
+        <td>{{ patient.ssid }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.birthdate | date }}</td>
+        <td>{{ patient.diseaseDescription }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" (click)="openUpdateModal(patient)">Update</button>
+          <button class="btn btn-danger btn-sm" (click)="deletePatient(patient)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Update Patient Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show d-block': updateModalVisible}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Patient</h5>
+          <button type="button" class="close" (click)="closeUpdateModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="updatePatientForm" (ngSubmit)="updatePatient()">
+            <input type="hidden" formControlName="id">
+            <div class="form-group">
+              <label for="firstname">First Name</label>
+              <input type="text" id="firstname" class="form-control" formControlName="firstname">
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input type="text" id="lastname" class="form-control" formControlName="lastname">
+            </div>
+            <div class="form-group">
+              <label for="ssid">SSID</label>
+              <input type="text" id="ssid" class="form-control" formControlName="ssid">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" class="form-control" formControlName="phone">
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <input type="text" id="gender" class="form-control" formControlName="gender">
+            </div>
+            <div class="form-group">
+              <label for="birthdate">Birthdate</label>
+              <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+            </div>
+            <div class="form-group">
+              <label for="diseaseDescription">Disease Description</label>
+              <input type="text" id="diseaseDescription" class="form-control" formControlName="diseaseDescription">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Update Patient</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

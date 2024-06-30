@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <h2>Register New Patient</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="registerPatient()">
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" class="form-control" formControlName="firstname">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" class="form-control" formControlName="lastname">
+      </div>
+      <div class="form-group">
+        <label for="ssid">SSID</label>
+        <input type="text" id="ssid" class="form-control" formControlName="ssid">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" class="form-control" formControlName="phone">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" class="form-control" formControlName="gender">
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Birthdate</label>
+        <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+      </div>
+      <div class="form-group">
+        <label for="diseaseDescription">Disease Description</label>
+        <input type="text" id="diseaseDescription" class="form-control" formControlName="diseaseDescription">
+      </div>
+      <button type="submit" class="btn btn-success mt-2">Register Patient</button>
+      <button type="button" class="btn btn-secondary mt-2" (click)="returnToList()">Return to Patient List</button>
+    </form>
+  </div>

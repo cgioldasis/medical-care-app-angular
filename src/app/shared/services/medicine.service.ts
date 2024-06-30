@@ -35,7 +35,7 @@ export class MedicineService {
   }
 
   updateMedicine(medicine: UpdateMedicine): Observable<Medicine> {
-    return this.http.put<Medicine>(`${API_URL}/update/${medicine.id}}`, medicine, {
+    return this.http.put<Medicine>(`${API_URL}/update/${medicine.id}`, medicine, {
       headers: {
         Authorization: ` ${localStorage.getItem('access_token')}`,
       }

@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2>Treatment Details</h2>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="treatment">
+    <h3>{{ treatment.treatmentName }}</h3>
+    <p><strong>Start Date:</strong> {{ treatment.startDate | date }}</p>
+    <p><strong>End Date:</strong> {{ treatment.endDate | date }}</p>
+    <p><strong>Medicines:</strong>
+      <ul>
+        <li *ngFor="let medicine of treatment.medicineNames">{{ medicine }}</li>
+      </ul>
+    <!-- Button to delete the current treatment -->
+    <button type="button" class="btn btn-danger mt-2" (click)="deleteTreatment()">Delete Treatment</button>
+  </div>
+
+  <!-- Always visible return button -->
+  <button type="button" class="btn btn-secondary mt-2" (click)="returnToPatientList()">Return to Patient List</button>
+
+  <div *ngIf="!treatment">
+    <h3>Add Treatment</h3>
+    <form [formGroup]="treatmentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="treatmentName">Treatment Name</label>
+        <input type="text" id="treatmentName" class="form-control" formControlName="treatmentName">
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" class="form-control" formControlName="startDate">
+      </div>
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" class="form-control" formControlName="endDate">
+      </div>
+      <div class="form-group">
+        <label for="medicineNames">Medicines</label>
+        <select multiple class="form-control" formControlName="medicineNames">
+          <option *ngFor="let medicine of medicines" [value]="medicine.medicineName">{{ medicine.medicineName }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success mt-2">Add Treatment</button>
+    </form>
+  </div>
+</div>

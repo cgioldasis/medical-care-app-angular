@@ -15,8 +15,7 @@ export class AppListAdminComponent {
     { text: 'Doctors', routerLink: 'doctors-admin-list' },
     { text: 'Medicines', routerLink: 'medicine-admin-list' },
     {
-      text: 'Simple Datatable Example',
-      routerLink: 'simple-datatable-example',
+      text: 'Patients',routerLink: 'patient-list',
     },
     {
       text: 'Component Output Example',

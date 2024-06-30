@@ -1,0 +1,63 @@
+body {
+    padding-top: 56px; /* Adjust based on the height of your navbar */
+    background-color: #f8f9fa; /* Light background for contrast */
+  }
+  
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #343a40 !important; /* Dark color for the navbar */
+  }
+  
+  .fixed-sidebar {
+    position: fixed;
+    top: 56px; /* Adjust based on the height of your navbar */
+    bottom: 0;
+    width: 16.666667%; /* 2 out of 12 columns */
+    overflow-y: auto;
+    background-color: #343a40; /* Dark color for the sidebar */
+    color: white;
+    display: flex;
+    justify-content: center; /* Center align content horizontally */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fixed-sidebar app-app-list-admin {
+    padding: 1rem;
+  }
+  
+  .container-fluid {
+    padding-left: 16.666667%; /* Align with the fixed sidebar width */
+  }
+  
+  .p-4 {
+    padding: 1.5rem; /* More padding for content area */
+  }
+  
+  .text-nowrap {
+    white-space: nowrap;
+  }
+  
+  /* Optional: Add hover effects for sidebar links */
+  .fixed-sidebar a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .fixed-sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: Customize scrollbar for sidebar */
+  .fixed-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .fixed-sidebar::-webkit-scrollbar-thumb {
+    background-color: #495057; /* Darker scrollbar thumb */
+    border-radius: 4px;
+  }
+  

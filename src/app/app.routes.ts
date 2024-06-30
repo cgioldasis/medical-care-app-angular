@@ -10,6 +10,10 @@ import { RegisterDoctorComponent } from './components/register-doctor/register-d
 import { UserStatusComponent } from './components/user-status/user-status.component';
 import { DoctorListComponent } from './components/doctor-list/doctor-list.component';
 import { MedicineListComponent } from './components/medicine-list/medicine-list.component';
+import { PatientListComponent } from './components/patient-list/patient-list.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
+import { PatientByDoctorListComponent } from './components/patient-by-doctor-list/patient-by-doctor-list.component';
+import { TreatmentComponent } from './components/treatment/treatment.component';
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
@@ -27,10 +31,29 @@ export const routes: Routes = [
             },
             {
                 path: 'medicine-admin-list', component: MedicineListComponent
-            }
+            },
+            {
+                path: 'patient-list', component: PatientListComponent
+            },
+
         ],
         data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
-    {path: 'doctor-dashboard', component: DoctorDashboardComponent, data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard] },
+    {path: 'doctor-dashboard', component: DoctorDashboardComponent,
+        children: [
+            {
+                path: 'medicine-admin-list', component: MedicineListComponent
+            },
+            {
+                path: 'patient-by-doctor-list', component: PatientByDoctorListComponent
+            },
+            {
+                path: 'patient-registration', component: PatientRegistrationComponent
+            },
+            {
+                path: 'treatment/:ssid', component: TreatmentComponent
+            }
+        ],
+        data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard] },
     {path: 'app-list-admin', component: AdminDashboardComponent, data: {expectedRole: 'ADMIN'}, canActivate: [authGuard]},
     {path: 'app-list-doctor', component: DoctorDashboardComponent , data: {expectedRole: 'DOCTOR'}, canActivate: [authGuard]},
 
