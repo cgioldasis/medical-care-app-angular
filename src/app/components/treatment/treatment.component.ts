@@ -114,7 +114,7 @@ export class TreatmentComponent implements OnInit {
         this.treatmentService.deleteTreatment(this.treatment.id).subscribe({
           next: () => {
             alert('Treatment deleted successfully.');
-            this.returnToPatientList();  // Redirect after successful deletion
+            this.returnToPatientList(); 
           },
           error: (error) => {
             console.error('Error deleting treatment:', error);

@@ -5,8 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddMedicine, Medicine, UpdateMedicine } from '../interface/medicine';
 
-
-// Define the base API URL from the environment configuration
 const API_URL = `${environment.apiURL}/api/medicine`;
 
 @Injectable({

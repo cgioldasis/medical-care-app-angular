@@ -36,16 +36,16 @@ export class LoginComponent {
        next: (response) => {
          const access_token = response.jwt;
          localStorage.setItem('access_token', access_token);
-         const decodedToken = jwtDecode(access_token) as LoggedInUser; // Add this line
-         const decodeRole = decodedToken.role; // Update this line
-         const decodeUsername = decodedToken.username; // Add this line
-          console.log('Role', decodeRole); // Add this line
-          console.log('Username', decodeUsername); // Add this line
+         const decodedToken = jwtDecode(access_token) as LoggedInUser; 
+         const decodeRole = decodedToken.role; 
+         const decodeUsername = decodedToken.username; 
+          console.log('Role', decodeRole); 
+          console.log('Username', decodeUsername); 
           
 
          this.userService.user.set({
            username: decodeUsername,
-           role: decodeRole, // Update this line
+           role: decodeRole, 
 
          });
          if (decodeRole === 'ADMIN') {

@@ -6,9 +6,6 @@ import { DoctorAccessedByAdmin, RegisterDoctor } from '../interface/doctor';
 import { Observable } from 'rxjs';
 
 
-
-
-// Define the base API URL from the environment configuration
 const API_URL = `${environment.apiURL}/api/doctor`;
 
 @Injectable({

@@ -11,7 +11,7 @@ const API_URL = `${environment.apiURL}/api/treatment`;
 })
 export class TreatmentService {
 
-  // Inject HttpClient
+
   http: HttpClient = inject(HttpClient);
 
   getTreatmentByPatientSsid(ssid: string): Observable<Treatment> {

@@ -5,7 +5,6 @@ import { Specialization } from '../interface/specialization';
 import { Observable } from 'rxjs';
 
 
-// Define the base API URL from the environment configuration
 const API_URL = `${environment.apiURL}/api/specialization`;
 
 @Injectable({
