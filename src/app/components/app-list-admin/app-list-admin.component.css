@@ -2,3 +2,8 @@
     color: red; /* Change this to the color you want */
     background-color: yellow; /* Optionally change the background color */
   }
+
+  .list-group {
+    width: 280px;
+    margin-top: 20px; 
+  }

@@ -17,31 +17,5 @@ export class AppListAdminComponent {
     {
       text: 'Patients',routerLink: 'patient-list',
     },
-    {
-      text: 'Component Output Example',
-      routerLink: 'component-output-example',
-    },
-    {
-      text: 'Template Driven Form Example',
-      routerLink: 'template-driven-form-example',
-    },
-    {
-      text: 'Reactive Form Example',
-      routerLink: 'reactive-form-example',
-    },
-    {
-      text: 'HTTP Client Example',
-      routerLink: 'http-client-example',
-    },
-    {
-      text: 'User Registration Example',
-      routerLink: 'user-registration-example',
-    },
-    {
-      text: 'Restricted Content Example',
-      routerLink: 'restricted-content-example',
-    },
-    { text: 'Fun for Nerds Game', routerLink: 'fun-for-nerds' },
-    { text: 'CRUD Example', routerLink: 'crud-example' },
   ];
 }
