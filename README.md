@@ -1,6 +1,7 @@
 # medical-care-app
 
 
+The application represents a simple form of a hospital application where a doctor can register a patient and administer treatments with medications. An ADMIN also has access to approve other admins and doctors, delete them, and at the same time be able to enter medications and view the list of all patients.
 
 ## Features
 To get access in this app, firstly you need to login as username: `admin` and password: `12345`.
